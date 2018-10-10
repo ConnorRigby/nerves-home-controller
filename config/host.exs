@@ -18,13 +18,14 @@ config :hc, HcWeb.Endpoint,
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
-  watchers: []
+  watchers: [node: ["node_modules/webpack/bin/webpack.js", "--mode", "development", "--watch-stdin", "--colors",
+                  cd: Path.expand("../assets", __DIR__)]]
 
 # Watch static and templates for browser reloading.
 config :hc, HcWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
+      ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg|vue)$},
       ~r{priv/gettext/.*(po)$},
       ~r{lib/hc_web/views/.*(ex)$},
       ~r{lib/hc_web/templates/.*(eex)$}
