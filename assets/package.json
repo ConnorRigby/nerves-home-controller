@@ -3,16 +3,18 @@
   "license": "MIT",
   "scripts": {
     "deploy": "webpack --mode production",
-    "watch": "webpack --mode development --watch"
+    "watch": "webpack --mode development --watch --color"
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "bootstrap": "^4.1.3",
     "phoenix": "file:../deps/host/phoenix",
     "phoenix_html": "file:../deps/host/phoenix_html",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.3",
     "babel-preset-env": "^1.6.1",
@@ -20,6 +22,8 @@
     "css-loader": "^0.28.10",
     "mini-css-extract-plugin": "^0.4.0",
     "optimize-css-assets-webpack-plugin": "^4.0.0",
+    "ts-loader": "^5.2.1",
+    "typescript": "^3.1.2",
     "uglifyjs-webpack-plugin": "^1.2.4",
     "vue-loader": "^15.4.2",
     "vue-template-compiler": "^2.5.17",

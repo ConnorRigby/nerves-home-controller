@@ -32,6 +32,12 @@ defmodule HcWeb.Router do
     resources("/nodes/:node_id/sensors", SensorController, only: [:index, :show])
 
     get(
+      "/nodes/:node_id/sensors/:child_sensor_id/sensor_values/latest",
+      SensorValueController,
+      :latest
+    )
+    
+    get(
       "/nodes/:node_id/sensors/:child_sensor_id/:type/:value",
       SensorController,
       :dispatch_packet
@@ -41,11 +47,7 @@ defmodule HcWeb.Router do
       only: [:index]
     )
 
-    get(
-      "/nodes/:node_id/sensors/:child_sensor_id/sensor_values/latest",
-      SensorValueController,
-      :latest
-    )
+
 
     resources("/nodes/:node_id/sensors/:child_sensor_id/sensor_triggers", SensorTriggerController)
   end

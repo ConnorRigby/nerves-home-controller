@@ -6,7 +6,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from "./pages/home.vue"
 import Nodes from "./pages/nodes.vue"
-
+import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 Vue.use(VueRouter)
 
 const routes = [

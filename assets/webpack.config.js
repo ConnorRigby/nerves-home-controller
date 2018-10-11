@@ -15,9 +15,11 @@ module.exports = (env, options) => ({
   resolve: {
     alias: {
       vue: 'vue/dist/vue.js'
-    }
+    },
+    extensions: ['.ts', '.js', '.vue', '.json'],
   },
   entry: './js/app.js',
+  devtool: 'inline-source-map',
   output: {
     filename: 'app.js',
     path: path.resolve(__dirname, '../priv/static/js')
@@ -25,8 +27,19 @@ module.exports = (env, options) => ({
   module: {
     rules: [
       {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/,
+        options: {
+          appendTsSuffixTo: [/\.vue$/]
+        }
+      },
+      {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'vue-loader',
+        options: {
+          esModule: true,
+        }
       },
       {
         test: /\.js$/,

@@ -1,30 +1,17 @@
 <template>
-<ul id="my-sensors-nodes">
-  <Node v-for="item in nodes" :key="item.id" :item = item>
-  </Node>
-</ul>
+  <ul id="my-sensors-nodes">
+    <Node 
+      v-for="node in nodes" 
+      :key="node.id"
+      :battery_level="node.battery_level"
+      :config="node.config"
+      :id="node.id"
+      :name="node.name"
+      :protocol="node.protocol"
+      :sketch_name="node.sketch_name"
+      :sketch_version="node.sketch_version"
+      :status="node.status"
+    />
+  </ul>
 </template>
-
-<script>
-import axios from "axios";
-import Node from "../templates/node.vue";
-
-export default {
-  name: "Nodes",
-  components: {
-    Node
-  },
-  data: function() {
-    return {
-      nodes: []
-    };
-  },
-  methods: {},
-  mounted() {
-    axios.get("/api/my_sensors/nodes").then(data => {
-      this.nodes = data.data.data;
-    });
-  },
-  created() {}
-};
-</script>
+<script src="./nodes.ts" />
