@@ -3,7 +3,9 @@
     <h2> Child Sensor: {{child_sensor_id}} </h2>
 
     <SensorValue v-if="latest_sensor_value"
-      :sensor_id="latest_sensor_value.sensor_id"
+      :node_id="node_id"
+      :sensor_id="id"
+      :child_sensor_id="child_sensor_id"
       :type="latest_sensor_value.type"
       :inserted_at="latest_sensor_value.inserted_at"
       :value="latest_sensor_value.value"

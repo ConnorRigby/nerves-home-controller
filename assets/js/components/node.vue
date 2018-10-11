@@ -13,6 +13,7 @@
         :key="sensor.child_sensor_id" 
         :type="sensor.type"
         :node_id="id"
+        :id="sensor.id"
         :child_sensor_id="sensor.child_sensor_id"
       />
   </div>

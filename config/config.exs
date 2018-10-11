@@ -29,7 +29,7 @@ config :phoenix, :json_library, Jason
 # configuring ring_logger.
 
 config :logger,
-  backends: [RingLogger, :console],
+  backends: [:console],
   handle_sasl_reports: true,
   handle_otp_reports: true,
   # format: "$time $metadata[$level] $message\n",

@@ -12,6 +12,7 @@ defmodule HcWeb.MySensors.SensorView do
 
   def render("sensor.json", %{sensor: sensor}) do
     %{
+      id: sensor.id,
       child_sensor_id: sensor.child_sensor_id,
       node_id: sensor.node_id,
       type: sensor.type

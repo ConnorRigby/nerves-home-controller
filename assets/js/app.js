@@ -6,7 +6,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from "./pages/home.vue"
 import Nodes from "./pages/nodes.vue"
-import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
+import Bootstrap from 'bootstrap/dist/css/bootstrap.css'
+import { Socket } from "phoenix"
+
+let socket = new Socket("/socket", { params: {} })
+socket.connect();
 Vue.use(VueRouter)
 
 const routes = [
@@ -16,3 +20,4 @@ const routes = [
 
 const router = new VueRouter({ routes })
 const app = new Vue({ router }).$mount('#app')
+Vue.prototype.$socket = socket;

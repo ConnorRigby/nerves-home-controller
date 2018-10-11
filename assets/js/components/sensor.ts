@@ -4,21 +4,18 @@ import axios from "axios";
 export default {
   name: "Sensor",
   components: { SensorValue },
-  props: ["node_id", "child_sensor_id", "type"],
+  props: ["id", "node_id", "child_sensor_id", "type"],
   data: function (): { latest_sensor_value: [any] } {
     return { latest_sensor_value: null };
   },
   methods: {
     toggle: function (event: any) {
       let that = this;
-      console.log(event.target.checked);
       let toggle_state = event.target.checked ? 0 : 1
       let url = "/api/my_sensors/nodes/" + that.node_id.toString() + "/sensors/" + that.child_sensor_id + "/value_status/" + toggle_state.toString();
       axios
         .get(url)
-        .then(function (data: any) {
-
-        })
+        .then(function (data: any) { })
     }
   },
   mounted() {

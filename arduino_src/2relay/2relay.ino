@@ -49,11 +49,13 @@
 #define NUMBER_OF_RELAYS 2 // Total number of attached relays
 #define RELAY_ON 1  // GPIO value to write to turn on attached relay
 #define RELAY_OFF 0 // GPIO value to write to turn off attached relay
-
+MyMessage msgs[NUMBER_OF_RELAYS];
 
 void before()
 {
     for (int sensor=1, pin=RELAY_PIN; sensor<=NUMBER_OF_RELAYS; sensor++, pin++) {
+         msgs[sensor-1] = MyMessage(sensor, V_STATUS);
+
         // Then set relay pins in output mode
         pinMode(pin, OUTPUT);
         // Set relay to last known state (using eeprom storage)
@@ -87,14 +89,9 @@ void receive(const MyMessage &message)
 {
     // We only expect one type of message from controller. But we better check anyway.
     if (message.type==V_STATUS) {
-        // Change relay state
+        send(msgs[message.sensor-1].set(message.getBool()?RELAY_ON:RELAY_OFF, 1));
         digitalWrite(message.sensor-1+RELAY_PIN, message.getBool()?RELAY_ON:RELAY_OFF);
-        // Store state in eeprom
         saveState(message.sensor, message.getBool());
-        // Write some debug info
-//        Serial.print("Incoming change for sensor:");
-//        Serial.print(message.sensor);
-//        Serial.print(", New status: ");
-//        Serial.println(message.getBool());
+
     }
 }
