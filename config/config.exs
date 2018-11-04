@@ -15,7 +15,7 @@ config :nerves, :firmware, rootfs_overlay: "rootfs_overlay"
 # involved with firmware updates.
 
 config :shoehorn,
-  init: [:nerves_runtime, :nerves_init_gadget],
+  init: [:nerves_runtime, :nerves_network, :nerves_init_gadget],
   app: Mix.Project.config()[:app]
 
 # Configure MySensors
@@ -29,9 +29,9 @@ config :phoenix, :json_library, Jason
 # configuring ring_logger.
 
 config :logger,
-  backends: [:console],
-  handle_sasl_reports: true,
-  handle_otp_reports: true,
+  backends: [:console, RingLogger],
+  # handle_sasl_reports: true,
+  # handle_otp_reports: true,
   # format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
@@ -42,6 +42,18 @@ config :logger,
 key = Path.join(System.user_home!(), ".ssh/id_rsa.pub")
 unless File.exists?(key), do: Mix.raise("No SSH Keys found. Please generate an ssh key")
 
+key_mgmt = System.get_env("NERVES_NETWORK_KEY_MGMT") || "WPA-PSK"
+
+config :nerves_network, :default,
+  wlan0: [
+    ssid: System.get_env("NERVES_NETWORK_SSID"),
+    psk:  System.get_env("NERVES_NETWORK_PSK"),
+    key_mgmt: String.to_atom(key_mgmt)
+  ],
+  eth0: [
+    ipv4_address_method: :dhcp
+  ]
+  
 config :nerves_firmware_ssh,
   authorized_keys: [
     File.read!(key)
@@ -51,8 +63,8 @@ config :nerves_firmware_ssh,
 # See https://hexdocs.pm/nerves_init_gadget/readme.html for more information.
 
 config :nerves_init_gadget,
-  ifname: "usb0",
-  address_method: :dhcpd,
+  ifname: "wlan0",
+  address_method: :dhcp,
   mdns_domain: "hc.local",
   node_name: nil,
   node_host: :mdns_domain,

@@ -42,16 +42,16 @@ defmodule Hc.MixProject do
     [
       {:nerves, "~> 1.3", runtime: false},
       {:shoehorn, "~> 0.4"},
-      {:ring_logger, "~> 0.4"},
+      {:ring_logger, "~> 0.6"},
       {:my_sensors, path: "../my_sensors"},
-      {:sqlite_ecto2, "~> 2.2"},
+      {:sqlite_ecto2, "~> 2.3"},
       {:nerves_uart, "~> 1.2"},
       {:phoenix, github: "phoenixframework/phoenix", override: true},
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_html, "~> 2.11"},
       {:gettext, "~> 0.11"},
-      {:jason, "~> 1.0"},
-      {:cowboy, "~> 1.0"}
+      {:jason, "~> 1.1"},
+      {:plug_cowboy, "~> 2.0"}
     ] ++ deps(@target)
   end
 
@@ -67,9 +67,12 @@ defmodule Hc.MixProject do
 
   defp deps(target) do
     [
-      {:nerves_runtime, "~> 0.6"},
-      {:nerves_init_gadget, "~> 0.4"},
-      {:my_sensors_mysgw, "~> 2.4.0-beta.3"}
+      {:nerves_runtime, "~> 0.8"},
+      {:nerves_init_gadget, "~> 0.5.2"},
+      {:nerves_time, "~> 0.2"},
+      {:my_sensors_mysgw, path: "../my_sensors_mysgw"},
+      {:elixir_ale, "~> 1.2"},
+      # {:my_sensors_mysgw, "~> 2.4.0-beta.3"}
     ] ++ system(target)
   end
 
@@ -83,6 +86,25 @@ defmodule Hc.MixProject do
       my_sensors_mysgw_ce_pin: "65"
     ]
 
+  defp my_sensors_mysgw_config("rpi0"),
+    do: [
+      my_sensors_transport: "rf24",
+      my_sensors_irq_pin: "15",
+      my_sensors_cs_pin: "24",
+      my_sensors_ce_pin: "22",
+      my_sensors_mysgw_irq_pin: "15",
+      my_sensors_mysgw_cs_pin: "24",
+      my_sensors_mysgw_ce_pin: "22",
+      my_sensors_leds: "true",
+      my_sensors_leds_inverse: "true",
+      my_sensors_err_led_pin: "33",
+      my_sensors_rx_led_pin: "29",
+      my_sensors_tx_led_pin: "31",
+      my_sensors_mysgw_spi_dev: "/dev/spidev0.0",
+      # my_sensors_rf24_pa_level: "RF24_PA_MAX",
+    ]
+
   defp system("bbb"), do: [{:nerves_system_bbb, "~> 2.0.0-rc.0", runtime: false}]
+  defp system("rpi0"), do: [{:nerves_system_rpi0, "1.4.0", runtime: false}]
   defp system(target), do: Mix.raise("Unknown MIX_TARGET: #{target}")
 end
