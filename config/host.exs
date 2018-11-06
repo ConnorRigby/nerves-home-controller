@@ -46,4 +46,4 @@ config :phoenix, :plug_init_mode, :runtime
 config :my_sensors, MySensors.Repo,
   adapter: Sqlite.Ecto2,
   database: "my_sensnors_#{Mix.env()}.sqlite",
-  pool_size: 1
+  loggers: []

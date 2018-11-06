@@ -30,6 +30,7 @@ config :phoenix, :json_library, Jason
 
 config :logger,
   backends: [:console, RingLogger],
+  level: :info,
   # handle_sasl_reports: true,
   # handle_otp_reports: true,
   # format: "$time $metadata[$level] $message\n",

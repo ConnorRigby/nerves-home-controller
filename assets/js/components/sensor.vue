@@ -1,7 +1,7 @@
 <template>
   <ion-item>
     <ion-card-content>
-      <h3> Child Sensor: {{child_sensor_id}} </h3>
+      <h3> <strong> Child Sensor: </strong> {{child_sensor_id}} </h3>
 
       <SensorValue v-if="latest_sensor_value"
         :node_id="node_id"
