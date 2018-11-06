@@ -1,16 +1,13 @@
-// We need to import the CSS so that webpack will load it.
-// The MiniCssExtractPlugin is used to separate it out into
-// its own CSS file.
-import css from "../css/app.css"
+// import '@ionic/core/css/ionic.bundle.css'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from "./pages/home.vue"
 import Nodes from "./pages/nodes.vue"
-import Bootstrap from 'bootstrap/dist/css/bootstrap.css'
 import { Socket } from "phoenix"
 
 let socket = new Socket("/socket", { params: {} })
 socket.connect();
+Vue.config.ignoredElements = [/^ion-/]
 Vue.use(VueRouter)
 
 const routes = [
