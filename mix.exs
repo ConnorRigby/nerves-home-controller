@@ -51,7 +51,10 @@ defmodule Hc.MixProject do
       {:phoenix_html, "~> 2.11"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.1"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:nimble_csv, "~> 0.4.0"},
+      {:timex, "~> 3.4"},
+      {:exirc, "~> 1.0"}
     ] ++ deps(@target)
   end
 
@@ -70,9 +73,10 @@ defmodule Hc.MixProject do
       {:nerves_runtime, "~> 0.8"},
       {:nerves_init_gadget, "~> 0.5.2"},
       {:nerves_time, "~> 0.2"},
+      # {:my_sensors_mysgw, "~> 2.4.0-beta.3"}
       {:my_sensors_mysgw, path: "../my_sensors_mysgw"},
       {:elixir_ale, "~> 1.2"},
-      # {:my_sensors_mysgw, "~> 2.4.0-beta.3"}
+      {:toolshed, "~> 0.2.2"}
     ] ++ system(target)
   end
 

@@ -20,7 +20,8 @@ defmodule Hc.Application do
     # for other strategies and supported options
     children = [
       {MySensors.Transport, [MySensors.Transport.TCP, @transport_config]},
-      HcWeb.Endpoint
+      HcWeb.Endpoint,
+      HcIRC.Supervisor
     ]
 
     opts = [strategy: :one_for_one, name: Hc.Supervisor]

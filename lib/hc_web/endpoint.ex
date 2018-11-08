@@ -1,9 +1,10 @@
 defmodule HcWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :hc
 
-  socket "/socket", HcWeb.UserSocket,
+  socket("/socket", HcWeb.UserSocket,
     websocket: [],
     longpoll: []
+  )
 
   # Serve at "/" the static files from "priv/static" directory.
   #

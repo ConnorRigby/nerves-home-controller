@@ -2,7 +2,7 @@ defmodule HcWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  channel "sensor_values:*", HcWeb.SensorValueChannel
+  channel("sensor_values:*", HcWeb.SensorValueChannel)
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After

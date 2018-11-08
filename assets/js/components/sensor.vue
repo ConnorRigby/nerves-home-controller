@@ -12,6 +12,7 @@
         :value="latest_sensor_value.value"
       />
       <ion-toggle v-if="type == 'sensor_binary'" v-on:click="toggle" />
+
     </ion-card-content>
   </ion-item>
 </template>

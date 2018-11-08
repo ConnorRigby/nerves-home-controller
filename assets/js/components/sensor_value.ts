@@ -15,6 +15,7 @@ export default {
       real_value: null,
       real_type: null,
       real_inserted_at: null,
+      graph_url: "/nodes/" + this.node_id + "/sensors/" + this.child_sensor_id + "/graph",
       type_name: "unknown",
       type_units: "units",
       type_icon: "help"
@@ -22,6 +23,8 @@ export default {
   },
   methods: {},
   mounted() {
+    console.log("node_id: " + this.node_id);
+    console.log("sensor_id: " + this.sensor_id);
     this.real_value = this.value;
     this.real_type = this.type;
     this.real_inserted_at = new Date(this.inserted_at).toISOString();

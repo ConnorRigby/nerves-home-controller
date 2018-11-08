@@ -48,13 +48,13 @@ key_mgmt = System.get_env("NERVES_NETWORK_KEY_MGMT") || "WPA-PSK"
 config :nerves_network, :default,
   wlan0: [
     ssid: System.get_env("NERVES_NETWORK_SSID"),
-    psk:  System.get_env("NERVES_NETWORK_PSK"),
+    psk: System.get_env("NERVES_NETWORK_PSK"),
     key_mgmt: String.to_atom(key_mgmt)
   ],
   eth0: [
     ipv4_address_method: :dhcp
   ]
-  
+
 config :nerves_firmware_ssh,
   authorized_keys: [
     File.read!(key)
@@ -70,6 +70,15 @@ config :nerves_init_gadget,
   node_name: nil,
   node_host: :mdns_domain,
   ssh_console_port: 22
+
+config :hc, HcIRC.Connection,
+  host: "chat.freenode.net",
+  channel: "#elixir-sensors",
+  port: 6667,
+  pass: "",
+  nick: "sensors-bot",
+  user: "sensors-bot",
+  name: "sensors-bot"
 
 # Import target specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

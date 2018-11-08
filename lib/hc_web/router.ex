@@ -36,7 +36,13 @@ defmodule HcWeb.Router do
       SensorValueController,
       :latest
     )
-    
+
+    get(
+      "/nodes/:node_id/sensors/:child_sensor_id/sensor_values/export",
+      SensorValueController,
+      :export
+    )
+
     get(
       "/nodes/:node_id/sensors/:child_sensor_id/:type/:value",
       SensorController,
@@ -46,8 +52,6 @@ defmodule HcWeb.Router do
     resources("/nodes/:node_id/sensors/:child_sensor_id/sensor_values", SensorValueController,
       only: [:index]
     )
-
-
 
     resources("/nodes/:node_id/sensors/:child_sensor_id/sensor_triggers", SensorTriggerController)
   end

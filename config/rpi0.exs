@@ -21,9 +21,9 @@ config :hc, HcWeb.Endpoint,
   watchers: [],
   server: true
 
-config :my_sensors_mysgw, [
+config :my_sensors_mysgw,
   daemon: false
-]
+
 # Do not include metadata nor timestamps in development logs
 # config :logger, :console, format: "[$level] $message\n"
 

@@ -1,6 +1,7 @@
 defmodule HcWeb.MySensors.SensorValueView do
   use HcWeb, :view
   alias HcWeb.MySensors.SensorValueView
+  alias NimbleCSV.RFC4180, as: CSV
 
   def render("index.json", %{sensor_values: sensor_values}) do
     %{data: render_many(sensor_values, SensorValueView, "sensor_value.json")}
