@@ -53,7 +53,7 @@ defmodule Hc.MixProject do
       {:jason, "~> 1.1"},
       {:plug_cowboy, "~> 2.0"},
       {:nimble_csv, "~> 0.4.0"},
-      {:timex, "~> 3.4"},
+      # {:timex, "~> 3.4"},
       {:exirc, "~> 1.0"}
     ] ++ deps(@target)
   end
