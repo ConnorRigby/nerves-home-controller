@@ -104,7 +104,22 @@ defmodule Hc.MixProject do
       my_sensors_rfm69hw: "true"
     ]
 
+  defp my_sensors_mysgw_config("rpi3"),
+    do: [
+      my_sensors_transport: "rfm69",
+      my_sensors_irq_pin: "22",
+      my_sensors_cs_pin: "24",
+      my_sensors_rfm69hw: "true"
+      # my_sensors_leds: "true",
+      # my_sensors_leds_inverse: "true",
+      # my_sensors_err_led_pin: "33",
+      # my_sensors_rx_led_pin: "29",
+      # my_sensors_tx_led_pin: "31",
+      # my_sensors_mysgw_spi_dev: "/dev/spidev0.0",
+    ]
+
   defp system("bbb"), do: [{:nerves_system_bbb, "~> 2.0.0-rc.0", runtime: false}]
   defp system("rpi0"), do: [{:nerves_system_rpi0, "1.4.0", runtime: false}]
+  defp system("rpi3"), do: [{:nerves_system_rpi3, "1.5.1", runtime: false}]
   defp system(target), do: Mix.raise("Unknown MIX_TARGET: #{target}")
 end
