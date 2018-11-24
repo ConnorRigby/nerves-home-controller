@@ -32,22 +32,17 @@
  */
 
 // Enable debug prints
-//#define MY_DEBUG
-#define MY_DISABLED_SERIAL
-#define MY_DEFAULT_TX_LED_PIN 1
-#define MY_DEFAULT_RX_LED_PIN 0
-#define MY_DEFAULT_ERR_LED_PIN 13
-// Enable and select radio type attached 
-#define MY_RADIO_NRF24
-//#define MY_RADIO_RFM69
-//#define MY_RS485
+#define MY_DEBUG
+#define MY_RADIO_RFM69
+#define MY_RFM69_NEW_DRIVER
+//#define MY_OTA_FIRMWARE_FEATURE
 
 #include <SPI.h>
 #include <MySensors.h>  
 #include <DHT.h>
 
 // Set this to the pin you connected the DHT's data pin to
-#define DHT_DATA_PIN 3
+#define DHT_DATA_PIN 4
 
 // Set this offset if the sensor has a permanent small offset to the real temperatures.
 // In Celsius degrees (as measured by the device)
@@ -55,7 +50,7 @@
 
 // Sleep time between sensor updates (in milliseconds)
 // Must be >1000ms for DHT22 and >2000ms for DHT11
-static const uint64_t UPDATE_INTERVAL = 5000;
+static const uint64_t UPDATE_INTERVAL = 30000;
 
 // Force sending an update of the temperature after n sensor reads, so a controller showing the
 // timestamp of the last update doesn't show something like 3 hours in the unlikely case, that

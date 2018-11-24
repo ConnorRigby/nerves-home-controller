@@ -28,17 +28,11 @@
  */
 
 
-//#define MY_DEBUG
-#define MY_DISABLED_SERIAL
-#define MY_DEFAULT_TX_LED_PIN 1
-#define MY_DEFAULT_RX_LED_PIN 0
-#define MY_DEFAULT_ERR_LED_PIN 13
-
-// Enable and select radio type attached
-#define MY_RADIO_RF24
-//#define MY_RADIO_NRF5_ESB
-//#define MY_RADIO_RFM69
-//#define MY_RADIO_RFM95
+#define MY_DEBUG
+#define MY_RADIO_RFM69
+#define MY_RFM69_NEW_DRIVER
+#define MY_OTA_FIRMWARE_FEATURE
+#define MY_REPEATER_FEATURE
 
 // Enable repeater functionality for this node
 #define MY_REPEATER_FEATURE
