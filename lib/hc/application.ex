@@ -8,7 +8,7 @@ defmodule Hc.Application do
   case Mix.Project.config()[:target] do
     "host" ->
       @transport_config [
-        host: to_charlist(Application.get_all_env(:nerves_init_gadget)[:mdns_domain])
+        host: to_charlist(Application.get_all_env(:nerves_init_gadget)[:mdns_domain]),
       ]
 
     _ ->
@@ -19,9 +19,9 @@ defmodule Hc.Application do
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     children = [
-      {MySensors.Transport, [MySensors.Transport.TCP, @transport_config]},
+      {MySensors.Transport, [MySensors.Transport.UART, [device: "/dev/ttyUSB0"]]},
       HcWeb.Endpoint,
-      HcIRC.Supervisor
+      # HcIRC.Supervisor
     ]
 
     opts = [strategy: :one_for_one, name: Hc.Supervisor]
